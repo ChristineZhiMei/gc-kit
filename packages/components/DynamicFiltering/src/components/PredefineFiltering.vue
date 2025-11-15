@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {PredefineComponentType} from "@/types/DynamicFiltering";
+import type {PredefineComponentType} from "../types/DynamicFiltering";
 import { computed } from "vue";
 const emit = defineEmits(["update:modelValue"]);
 const props = withDefaults(defineProps<{

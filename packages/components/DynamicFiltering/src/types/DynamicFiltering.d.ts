@@ -22,3 +22,8 @@ export type showFilterItemType = {
   key: string
   isUsable: boolean // 用于临时控制是否筛选
 }
+export type DynamicFilteringType = {
+  title?: string // 筛选区域的标题,可选,默认为"筛选条件"
+  filterItems?: Array<FilterItemType> // 筛选选项配置列表
+  onChangeQuery?: boolean  // 是否自动应用查询
+}
