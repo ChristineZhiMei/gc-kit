@@ -4,7 +4,7 @@ import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue({})],
   build: {
     lib: {
       entry: resolve(__dirname, 'packages/index.ts'),

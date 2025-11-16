@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json", // 继承根配置的基础规则
+  "compilerOptions": {
+    "moduleResolution": "bundler", // 与根配置一致
+    "types": ["vite/client", "vue", "vue-router"], // 补充 Vue 运行时类型
+    "outDir": "dist/app", // 应用代码编译输出（若需要）
+    "noEmit": true // 组件库的代码编译由 Vite 负责，TS 仅做类型检查
+  },
+  "include": [
+    "packages/**/*.vue",
+    "packages/**/*.ts",
+    "demo/**/*.vue",
+    "demo/**/*.ts",
+    "shims-vue.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*",
+    "dist",
+  ]
+}

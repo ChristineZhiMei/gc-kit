@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json", // 继承根配置的基础规则
+  "compilerOptions": {
+    "moduleResolution": "NodeNext", // Node 环境推荐用 NodeNext，兼容 CJS/ESM
+    "module": "NodeNext", // 与 moduleResolution 匹配
+    "target": "es2022", // Node 环境无需太高的 ES 版本
+    "types": ["node", "vite/client"], // 补充 Node 类型
+    "outDir": "dist/node", // Node 脚本编译输出（可选）
+    "noEmit": true // 通常无需编译 Node 脚本，仅做类型检查
+  },
+  "include": [
+    "vite.config.ts",
+    "build/**/*.ts", // 若有构建脚本目录
+    "scripts/**/*.ts" // 若有其他 Node 脚本
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "packages/**/*" // 排除应用代码，避免混淆
+  ]
+}

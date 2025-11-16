@@ -2,20 +2,28 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "declaration": true, // 生成类型声明文件
+    "emitDeclarationOnly": true, // 仅输出类型文件（组件库打包由 Vite 负责）
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler", // 关键：替换 "node" 为 "bundler"，适配 Vite 插件类型
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["packages/*"] // 修正路径：组件库源码在 packages 目录，而非 src
     },
-    "types": ["vite/client"],
-    "outDir": "dist"
+    "types": ["vite/client", "vue", "vue-router"], // 补充 Vue 和路由类型，避免类型缺失
+    "outDir": "dist/types", // 类型文件输出到 dist/types，结构更清晰
+    "resolveJsonModule": true // 可选：支持导入 JSON 文件（若组件库需要）
   },
-  "include": ["packages/**/*","shims-vue.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "packages/**/*",
+    "shims-vue.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "packages/**/__tests__/*", // 排除测试文件，不生成类型
+    "dist" // 排除打包产物
+  ]
 }
