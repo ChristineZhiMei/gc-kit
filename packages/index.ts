@@ -1,8 +1,8 @@
 import { App } from 'vue'
-import DynamicFiltering from './components/DynamicFiltering'
-
+import TestButton from './components/TestButton/index.vue'
+import './styles/index.scss';
 // 组件列表
-const components = [DynamicFiltering]
+const components = [TestButton]
 
 // 全局安装方法
 const install = (app: App): void => {
@@ -12,9 +12,7 @@ const install = (app: App): void => {
 }
 
 // 支持按需导入
-export { DynamicFiltering }
+export { TestButton }
 
 // 默认导出全局安装方法
-export default {
-  install
-}
+export default { install }

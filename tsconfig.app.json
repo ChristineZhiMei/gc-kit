@@ -11,7 +11,7 @@
     "packages/**/*.ts",
     "demo/**/*.vue",
     "demo/**/*.ts",
-    "shims-vue.d.ts"
+    "env.d.ts"
   ],
   "exclude": [
     "node_modules",
