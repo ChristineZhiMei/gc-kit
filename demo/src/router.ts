@@ -1,5 +1,5 @@
 // demo/src/router.ts
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router' // 导入 RouteRecordRaw
+import {createRouter, createWebHashHistory, RouteRecordRaw, useRoute, useRouter} from 'vue-router' // 导入 RouteRecordRaw
 
 // 显式指定 routes 为 RouteRecordRaw 数组
 const routes: RouteRecordRaw[] = [ // 关键：添加 : RouteRecordRaw[] 类型

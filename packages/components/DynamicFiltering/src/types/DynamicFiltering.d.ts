@@ -1,5 +1,5 @@
-import React from "react";
 import type { Component } from 'vue';
+import type { Router, RouteLocationNormalized } from 'vue-router'
 export type FilterItemType = {
   label: string // 显示的名称
   key: string  // 用于查询参数等
@@ -25,5 +25,7 @@ export type showFilterItemType = {
 export type DynamicFilteringType = {
   title?: string // 筛选区域的标题,可选,默认为"筛选条件"
   filterItems?: Array<FilterItemType> // 筛选选项配置列表
-  onChangeQuery?: boolean  // 是否自动应用查询
+  onChangeQuery?: boolean  // 是否自动应用查询参数到筛选条件,可选,默认为false
+  router: Router // vue-router实例
+  route: RouteLocationNormalized // vue-router路由对象
 }

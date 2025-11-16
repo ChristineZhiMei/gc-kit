@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch} from 'vue'
 import _ from "lodash";
-import {useRouter, useRoute} from "vue-router";
 import {
   FilterItemType,
   FilterItemsKeyMapType,
@@ -12,8 +11,7 @@ import {
 import {Filter, RefreshRight} from "@element-plus/icons-vue";
 import PredefineFiltering from "./components/PredefineFiltering.vue";
 import {pinyin} from "pinyin-pro";
-const router = useRouter()
-const route = useRoute()
+import type { Router, RouteLocationNormalized } from 'vue-router'
 defineOptions({
   name: 'DynamicFiltering' // 组件名称，必须是字符串
 })
@@ -22,11 +20,44 @@ const emit = defineEmits<{
   (e: 'applyFiltering', value: Record<string, FilterValue>): void
   (e: 'applyNonFiltering', value: Record<string, FilterValue>): void
 }>()
-const props = withDefaults(defineProps<DynamicFilteringType>(), {
-  title: "筛选条件",
-  filterItems: () => [],
-  onChangeQuery: false
+// const props = withDefaults(defineProps<DynamicFilteringType>(), {
+//   title: "筛选条件",
+//   filterItems: () => [],
+//   onChangeQuery: false,
+//   router: { push: () => {} } as Router,
+//   route: { query: {} } as RouteLocationNormalized
+// })
+const props = defineProps({
+  // 标题：字符串类型，默认值 "筛选条件"
+  title: {
+    type: String,
+    default: "筛选条件"
+  },
+  // 筛选项：数组类型，默认值空数组
+  filterItems: {
+    type: Array,
+    default: () => [] // 引用类型默认值需用函数返回，避免共享引用
+  },
+  // 是否自动应用查询参数：布尔类型，默认值 false
+  onChangeQuery: {
+    type: Boolean,
+    default: false
+  },
+  // 路由实例：Router 类型，可选（默认值为空实现）
+  router: {
+    type: Object as () => Router, // 声明类型为 Router
+    default: () => ({ push: () => {} } as Router) // 默认值用函数返回
+  },
+  // 路由对象：RouteLocationNormalized 类型，可选（默认值包含空 query）
+  route: {
+    type: Object as () => RouteLocationNormalized, // 声明类型
+    default: () => ({ query: {} } as RouteLocationNormalized)
+  }
 })
+const { route } = props
+const { router } = props
+console.log(props)
+
 export type DynamicFilteringProps = typeof props
 export type DynamicFilteringEmits = typeof emit
 /* 筛选区域控制 */

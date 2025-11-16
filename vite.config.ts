@@ -12,12 +12,13 @@ export default defineConfig({
       fileName: format => `gc-kit.${format}.js`
     },
     rollupOptions: {
-      external: ['vue','element-plus'],
+      external: ['vue','element-plus','vue-router'],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
           vue: 'Vue',
-          'element-plus': 'ElementPlus'
+          'element-plus': 'ElementPlus',
+          'vue-router': 'VueRouter'
         }
       }
     }
